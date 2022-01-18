@@ -128,13 +128,3 @@ def get_guess(solutionSet, guesses)
 
     rankedGuesses.keys().first()
 end
-
-def run_all
-    total = 0.0
-    for challenge in $solutionList[0..50]
-        turns = solve(challenge)
-        puts "#{challenge}: #{turns}"
-        total += turns if turns.is_a? Integer
-    end
-    puts total/50
-end
