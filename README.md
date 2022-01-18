@@ -14,5 +14,5 @@ This approach is rather brute force, but essentially does the following:
 
 
 TODO:
-~~- If a letter is "graded" "yellow", update $pattern to exclude char from that position~~
+- ~~If a letter is "graded" "yellow", update $pattern to exclude char from that position~~
 - when calculating word score, reward cross-discovery in solved positions
