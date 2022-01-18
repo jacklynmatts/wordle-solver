@@ -28,7 +28,7 @@ def update_hints(guess, grade)
             $blacklist |= [guess[i]]
         when '1'
             $whitelist |= [guess[i]]
-            $pattern[i] = "[^" + $pattern[i].tr('^a-z','').concat(guess[i]) + "]"
+            if $pattern[i] == '.' || $pattern[i].length > 1 then $pattern[i] = "[^" + $pattern[i].tr('^a-z','').concat(guess[i]) + "]" end
         when '2'
             $whitelist |= [guess[i]]
             $pattern[i] = guess[i]
