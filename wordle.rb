@@ -138,17 +138,3 @@ def run_all
     end
     puts total/50
 end
-
-# run_all
-# p debug($solutionList[$solutionList.index('humph')+1])
-# debug("quiet")
-
-$blacklist = Set.new('saineut'.chars)
-$whitelist = Set.new('poy'.chars)
-$pattern = 'p...y'
-guesses = ['saine','pouty']
-solutionSet = get_solution_set
-puts get_guess(solutionSet,guesses)
-
-# on yellow, update pattern to exclude letter in that location
-# when calculating word score, reward cross-discovery in solved positions
