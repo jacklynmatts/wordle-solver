@@ -28,6 +28,7 @@ def update_hints(guess, grade)
             $blacklist |= [guess[i]]
         when '1'
             $whitelist |= [guess[i]]
+            $pattern[i] = "[^" + $pattern[i].tr('^a-z','').concat(guess[i]) + "]"
         when '2'
             $whitelist |= [guess[i]]
             $pattern[i] = guess[i]
@@ -36,7 +37,7 @@ def update_hints(guess, grade)
 end
 
 def get_solution_set
-    regex = Regexp.new $pattern
+    regex = Regexp.new $pattern.join
     $solutionList
         .select{ |v| v.chars.to_set.superset?($whitelist) }
         .select{ |v| v.chars.to_set.disjoint?($blacklist) }
@@ -46,7 +47,7 @@ end
 def solve(challenge, debug = false)
     $blacklist = Set.new
     $whitelist = Set.new
-    $pattern = '.....'
+    $pattern = ['.','.','.','.','.']
     guesses = []
     solutionSet = $solutionList
     puts "Debug: #{challenge}" if debug
@@ -57,7 +58,7 @@ def solve(challenge, debug = false)
         grade = check_guess(guesses[i], challenge)
         puts grade if debug
         update_hints(guesses[i], grade)
-        puts $blacklist, $whitelist, $pattern if debug
+        puts $blacklist, $whitelist, $pattern.join if debug
         solutionSet = get_solution_set
         puts solutionSet.length.to_s + " solutions remaining","" if debug
         #puts solutionSet if debug
@@ -112,7 +113,7 @@ def get_guess(solutionSet, guesses)
 
 
     # if we have a good pattern, make sure our guess aligns
-    regex = Regexp.new $pattern
+    regex = Regexp.new $pattern.join
     rankedGuesses = rankedGuesses.select{ |guess,score| guess =~ regex } if $pattern.count('.') < 3
     # don't allow duplicate characters if we still have a weak pattern
     rankedGuesses = rankedGuesses.select{ |guess,score| guess.chars.to_set.length == 5 } unless solutionSet.length < 5
