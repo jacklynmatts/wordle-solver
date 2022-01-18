@@ -1,6 +1,7 @@
 # Wordle Solver
 
 Still a work in progress, but mostly functional
+This solves 99.6% of words in an average of 3.053 moves.
 
 This approach is rather brute force, but essentially does the following:
 
@@ -11,7 +12,16 @@ This approach is rather brute force, but essentially does the following:
 
 
 
-
+Words not solved within 6 moves
+- joker
+- boxer
+- roger
+- shale
+- shave
+- fight
+- tight
+- wound
+- hound
 
 TODO:
 - ~~If a letter is "graded" "yellow", update $pattern to exclude char from that position~~
